@@ -13,17 +13,26 @@ x = 0
 y = 0
 guessedRight = []
 guessedWrong = []
-while x < len(word)+1:
+while x < len(word):
 	print ''.join(map(str, blanks))
 	guess = (raw_input('Guess a Letter ')).upper()
-	y = y + 1
 	for i in range(0, len(word)):
 		if guess == word[i] and not i in guessedRight:
-			guessedRight.append(i)
+			guessedRight.append(guess)
 			x = x + 1
 			blanks[i] = guess
+			
+		elif not guess in guessedWrong and guess != word[i]:
+			guessedWrong.append(guess)
+print(guessedWrong)
+print(guessedRight)
+for j in range(0,len(guessedRight)):
+	for k in range(0,len(guessedWrong)):
+		if guessedWrong[k] == guessedRight[j]:
+			del guessedWrong[k]
 		else:
-			guessedWrong.append(word[i])
+			y = y
+
 
 	if y == 1:
 		print('o')
@@ -34,3 +43,5 @@ while x < len(word)+1:
 		print(' o ')
 		print('-|-')
 		print(" /\\")
+print(word)
+print(guessedWrong)
